@@ -3,9 +3,9 @@
 Info-dense outdoor watch face for **Amazfit T-Rex 3** (ZeppOS 3.x).
 
 <p align="center">
-  <img src="assets/watchface-main.png" width="280" alt="TrailFace main watch face" />
+  <img src="assets/watchface-main.jpg" width="280" alt="TrailFace main watch face" />
   &nbsp;&nbsp;&nbsp;
-  <img src="assets/watchface-aod.png" width="280" alt="TrailFace AOD mode" />
+  <img src="assets/watchface-aod.jpg" width="280" alt="TrailFace AOD mode" />
 </p>
 
 ## Features
