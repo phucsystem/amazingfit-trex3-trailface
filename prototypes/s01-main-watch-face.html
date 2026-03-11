@@ -1,0 +1,291 @@
+<!--
+  Screen: S-01 Main Watch Face
+  CJX Stage: usage
+  FR Mapping: FR-01 (Time), FR-02 (Date), FR-03 (Steps+Arc), FR-04 (HR+Arc), FR-05 (Battery), FR-06 (Weather), FR-07 (Calories), FR-08 (Distance)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S-01 Main Watch Face — TrailFace</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="components.css">
+</head>
+<body class="cjx-usage">
+  <div class="app-layout">
+    <nav class="sidebar hide-mobile"></nav>
+    <main class="main-content" data-cjx-entrance>
+
+      <div class="screen-toggle">
+        <a href="s01-main-watch-face.html" class="active">S-01 Main</a>
+        <a href="s02-aod-watch-face.html">S-02 AOD</a>
+      </div>
+
+      <div class="watch-wrapper">
+        <div class="watch-strap-top"></div>
+        <div class="watch-strap-bottom"></div>
+        <div class="watch-body">
+          <div class="watch-lug-top"></div>
+          <div class="watch-lug-bottom"></div>
+          <div class="watch-crown"></div>
+
+          <div class="watch-screen">
+            <div class="watch-face">
+              <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <clipPath id="circleClip">
+                    <circle cx="240" cy="240" r="240"/>
+                  </clipPath>
+
+                  <!-- Multi-stop radial gradient background -->
+                  <radialGradient id="bgGradient" cx="50%" cy="42%" r="60%">
+                    <stop offset="0%" stop-color="#1a1a3e"/>
+                    <stop offset="35%" stop-color="#121228"/>
+                    <stop offset="70%" stop-color="#0a0a1a"/>
+                    <stop offset="100%" stop-color="#000000"/>
+                  </radialGradient>
+
+                  <!-- Ambient color blobs for depth -->
+                  <radialGradient id="glowSteps" cx="50%" cy="20%" r="40%">
+                    <stop offset="0%" stop-color="#00ff88" stop-opacity="0.06"/>
+                    <stop offset="100%" stop-color="#00ff88" stop-opacity="0"/>
+                  </radialGradient>
+                  <radialGradient id="glowHR" cx="30%" cy="65%" r="35%">
+                    <stop offset="0%" stop-color="#ff5555" stop-opacity="0.05"/>
+                    <stop offset="100%" stop-color="#ff5555" stop-opacity="0"/>
+                  </radialGradient>
+                  <radialGradient id="glowWeather" cx="70%" cy="70%" r="30%">
+                    <stop offset="0%" stop-color="#00b4ff" stop-opacity="0.04"/>
+                    <stop offset="100%" stop-color="#00b4ff" stop-opacity="0"/>
+                  </radialGradient>
+
+                  <!-- Glow filters for neon effect -->
+                  <filter id="glowGreen" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+                    <feMerge>
+                      <feMergeNode in="blur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                  <filter id="glowRed" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
+                    <feMerge>
+                      <feMergeNode in="blur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                  <filter id="glowBlue" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+                    <feMerge>
+                      <feMergeNode in="blur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                  <filter id="glowOrange" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+                    <feMerge>
+                      <feMergeNode in="blur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                  <filter id="glowPurple" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+                    <feMerge>
+                      <feMergeNode in="blur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                  <filter id="glowTime" x="-10%" y="-10%" width="120%" height="120%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur"/>
+                    <feMerge>
+                      <feMergeNode in="blur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+
+                  <!-- Gradient arcs for more vivid rings -->
+                  <linearGradient id="arcGradientSteps" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#00ff88"/>
+                    <stop offset="50%" stop-color="#00e5ff"/>
+                    <stop offset="100%" stop-color="#00ff88"/>
+                  </linearGradient>
+                  <linearGradient id="arcGradientHR" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#ff5555"/>
+                    <stop offset="50%" stop-color="#ff2d8a"/>
+                    <stop offset="100%" stop-color="#ff5555"/>
+                  </linearGradient>
+                </defs>
+
+                <g clip-path="url(#circleClip)">
+                  <!-- Background gradient -->
+                  <rect width="480" height="480" fill="url(#bgGradient)"/>
+
+                  <!-- Ambient color blobs -->
+                  <rect width="480" height="480" fill="url(#glowSteps)"/>
+                  <rect width="480" height="480" fill="url(#glowHR)"/>
+                  <rect width="480" height="480" fill="url(#glowWeather)"/>
+
+                  <!-- Subtle radial tick marks around edge -->
+                  <g opacity="0.12">
+                    <circle cx="240" cy="240" r="236" fill="none" stroke="#ffffff" stroke-width="0.5"
+                            stroke-dasharray="2 18.5" transform="rotate(-90 240 240)"/>
+                  </g>
+
+                  <!-- ===== OUTER ARC: Step Progress Ring ===== -->
+                  <!-- Track (background) -->
+                  <circle cx="240" cy="240" r="228" fill="none" stroke="#1a2a1a" stroke-width="12"
+                          stroke-dasharray="957 479"
+                          stroke-dashoffset="-718"
+                          stroke-linecap="round"/>
+                  <!-- Fill: 86.4% of 10,000 goal (8,642 steps) — gradient -->
+                  <circle cx="240" cy="240" r="228" fill="none" stroke="url(#arcGradientSteps)" stroke-width="12"
+                          class="arc-animated"
+                          data-target-dasharray="827 609"
+                          data-total-length="1436"
+                          stroke-dasharray="827 609"
+                          stroke-dashoffset="-718"
+                          stroke-linecap="round"
+                          filter="url(#glowGreen)"/>
+
+                  <!-- ===== INNER ARC: Heart Rate Ring ===== -->
+                  <!-- Track -->
+                  <circle cx="240" cy="240" r="210" fill="none" stroke="#2a1a1a" stroke-width="8"
+                          stroke-dasharray="880 440"
+                          stroke-dashoffset="-660"
+                          stroke-linecap="round"/>
+                  <!-- Fill: HR 72 mapped to 40-200 range — gradient -->
+                  <circle cx="240" cy="240" r="210" fill="none" stroke="url(#arcGradientHR)" stroke-width="8"
+                          class="arc-animated"
+                          data-target-dasharray="176 1143"
+                          data-total-length="1319"
+                          stroke-dasharray="176 1143"
+                          stroke-dashoffset="-660"
+                          stroke-linecap="round"
+                          filter="url(#glowRed)"/>
+
+                  <!-- ===== ZONE A: Status Bar (Weather + Battery) ===== -->
+
+                  <!-- Weather icon (sun with rays) -->
+                  <g transform="translate(140, 45)" filter="url(#glowBlue)">
+                    <circle cx="14" cy="14" r="6" fill="#00b4ff" opacity="0.3"/>
+                    <circle cx="14" cy="14" r="5" fill="none" stroke="#00e5ff" stroke-width="1.5"/>
+                    <line x1="14" y1="3" x2="14" y2="6" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="14" y1="22" x2="14" y2="25" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="3" y1="14" x2="6" y2="14" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="22" y1="14" x2="25" y2="14" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="6.2" y1="6.2" x2="8.3" y2="8.3" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="19.7" y1="19.7" x2="21.8" y2="21.8" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="21.8" y1="6.2" x2="19.7" y2="8.3" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="8.3" y1="19.7" x2="6.2" y2="21.8" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
+                  </g>
+
+                  <!-- Temperature: 22° -->
+                  <text x="172" y="63" font-family="'Barlow Condensed', -apple-system, sans-serif"
+                        font-size="22" font-weight="600" fill="#00e5ff" filter="url(#glowBlue)">22°</text>
+
+                  <!-- Battery icon (green, >50%) -->
+                  <g transform="translate(280, 46)" filter="url(#glowGreen)">
+                    <rect x="0" y="4" width="18" height="12" rx="2" fill="none" stroke="#00ff88" stroke-width="1.5"/>
+                    <rect x="18" y="7" width="3" height="6" rx="1" fill="#00ff88"/>
+                    <rect x="2" y="6" width="14" height="8" rx="1" fill="#00ff88" opacity="0.7"/>
+                  </g>
+
+                  <!-- Battery %: 87% -->
+                  <text x="304" y="64" font-family="'Barlow Condensed', -apple-system, sans-serif"
+                        font-size="20" font-weight="600" fill="#00ff88">87%</text>
+
+                  <!-- ===== ZONE B: Time + Date ===== -->
+
+                  <!-- Time: 14:30 — large, glowing -->
+                  <text x="240" y="195" text-anchor="middle"
+                        font-family="'Barlow Condensed', -apple-system, sans-serif"
+                        font-size="80" font-weight="700" fill="#ffffff"
+                        letter-spacing="4" filter="url(#glowTime)">14:30</text>
+
+                  <!-- Date: Tue, Mar 11 -->
+                  <text x="240" y="224" text-anchor="middle"
+                        font-family="'Barlow', -apple-system, sans-serif"
+                        font-size="17" font-weight="400" fill="#7a8aaa" letter-spacing="2">TUE, MAR 11</text>
+
+                  <!-- Thin separator line -->
+                  <line x1="180" y1="238" x2="300" y2="238" stroke="#ffffff" stroke-width="0.5" opacity="0.1"/>
+
+                  <!-- ===== ZONE C: Primary Metrics (HR + Steps) ===== -->
+
+                  <!-- Heart Rate icon -->
+                  <g transform="translate(148, 258)" class="heart-pulse" filter="url(#glowRed)">
+                    <path d="M11 4C11 2 9 0 7 0C5 0 3 1.5 3 4C3 1.5 1 0 -1 0C-3 0 -5 2 -5 4C-5 7 -2 10 3 14C8 10 11 7 11 4Z"
+                          fill="#ff5555" transform="scale(0.9)"/>
+                  </g>
+
+                  <!-- HR value: 72 -->
+                  <text x="174" y="274" font-family="'Barlow Condensed', -apple-system, sans-serif"
+                        font-size="30" font-weight="600" fill="#ff5555">72</text>
+
+                  <!-- HR unit: bpm -->
+                  <text x="216" y="274" font-family="'Barlow', -apple-system, sans-serif"
+                        font-size="13" fill="#ff8888" opacity="0.7">bpm</text>
+
+                  <!-- Steps icon (shoe/footprint) -->
+                  <g transform="translate(148, 296)" filter="url(#glowGreen)">
+                    <ellipse cx="5" cy="6" rx="4" ry="7" fill="#00ff88" opacity="0.8" transform="rotate(-15 5 6)"/>
+                    <circle cx="2" cy="-2" r="2" fill="#00ff88" opacity="0.6"/>
+                    <circle cx="6" cy="-3" r="1.8" fill="#00ff88" opacity="0.6"/>
+                    <circle cx="10" cy="-2" r="1.6" fill="#00ff88" opacity="0.6"/>
+                  </g>
+
+                  <!-- Steps value: 8,642 -->
+                  <text x="174" y="312" font-family="'Barlow Condensed', -apple-system, sans-serif"
+                        font-size="30" font-weight="600" fill="#00ff88">8,642</text>
+
+                  <!-- Steps label -->
+                  <text x="260" y="312" font-family="'Barlow', -apple-system, sans-serif"
+                        font-size="13" fill="#66ffaa" opacity="0.7">steps</text>
+
+                  <!-- ===== ZONE D: Secondary Metrics (Calories + Distance) ===== -->
+
+                  <!-- Calories icon (flame) -->
+                  <g transform="translate(128, 352)" filter="url(#glowOrange)">
+                    <path d="M9 0C9 0 12 5 12 9C12 13 9 16 6 16C3 16 0 13 0 9C0 7 1 5 3 4C3 4 4 7 6 7C6 7 5 3 9 0Z"
+                          fill="#ff8c00" transform="scale(1)" opacity="0.9"/>
+                  </g>
+
+                  <!-- Calories value: 420 cal -->
+                  <text x="150" y="370" font-family="'Barlow Condensed', -apple-system, sans-serif"
+                        font-size="22" font-weight="500" fill="#ffaa33">420</text>
+                  <text x="184" y="370" font-family="'Barlow', -apple-system, sans-serif"
+                        font-size="12" fill="#ffaa33" opacity="0.7">cal</text>
+
+                  <!-- Distance icon (route pin) -->
+                  <g transform="translate(272, 352)" filter="url(#glowPurple)">
+                    <path d="M9 0C5 0 2 3 2 7C2 12 9 18 9 18C9 18 16 12 16 7C16 3 13 0 9 0ZM9 9C7.5 9 6 7.5 6 6C6 4.5 7.5 3 9 3C10.5 3 12 4.5 12 6C12 7.5 10.5 9 9 9Z"
+                          fill="#b388ff" transform="scale(0.9)" opacity="0.9"/>
+                  </g>
+
+                  <!-- Distance value: 4.2 km -->
+                  <text x="294" y="370" font-family="'Barlow Condensed', -apple-system, sans-serif"
+                        font-size="22" font-weight="500" fill="#c9a8ff">4.2</text>
+                  <text x="326" y="370" font-family="'Barlow', -apple-system, sans-serif"
+                        font-size="12" fill="#c9a8ff" opacity="0.7">km</text>
+
+                  <!-- Bottom ambient glow -->
+                  <ellipse cx="240" cy="420" rx="120" ry="40" fill="#7c3aed" opacity="0.03"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="page-info">
+        <h2>S-01: Main Watch Face</h2>
+        <p>480x480 circular AMOLED &mdash; Concentric ring layout &mdash; TrailFace for Amazfit T-Rex 3</p>
+      </div>
+
+    </main>
+  </div>
+  <script src="interactions.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "trailface",
+  "version": "1.0.0",
+  "description": "Info-dense outdoor watch face for Amazfit T-Rex 3",
+  "scripts": {
+    "dev": "zeus dev",
+    "build": "zeus build",
+    "preview": "zeus preview"
+  },
+  "devDependencies": {
+    "@nicegoodthings/zeus-cli": "^3.0.0"
+  }
+}

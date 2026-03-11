@@ -1,0 +1,61 @@
+{
+  "configVersion": "v3",
+  "app": {
+    "appId": 1000001,
+    "appName": "TrailFace",
+    "appType": "watchface",
+    "version": {
+      "code": 1,
+      "name": "1.0.0"
+    },
+    "icon": "icon.png",
+    "vender": "TrailFace",
+    "description": "Info-dense outdoor watch face for Amazfit T-Rex 3"
+  },
+  "runtime": {
+    "apiVersion": {
+      "compatible": "3.0",
+      "target": "3.0",
+      "minVersion": "2.0"
+    }
+  },
+  "targets": {
+    "trex3": {
+      "module": {
+        "watchface": {
+          "path": "watchface/index",
+          "main": 1
+        }
+      },
+      "platforms": [
+        {
+          "name": "Amazfit T-Rex 3",
+          "deviceSource": 8716544
+        },
+        {
+          "name": "Amazfit T-Rex 3",
+          "deviceSource": 8716545
+        },
+        {
+          "name": "Amazfit T-Rex 3",
+          "deviceSource": 8716547
+        }
+      ],
+      "designWidth": 480
+    }
+  },
+  "permissions": [
+    "data:user.hdr.heart-rate",
+    "data:user.hdr.steps",
+    "data:user.hdr.calories",
+    "data:user.hdr.distance",
+    "device:os.battery",
+    "device:os.weather"
+  ],
+  "i18n": {
+    "en-US": {
+      "appName": "TrailFace"
+    }
+  },
+  "defaultLanguage": "en-US"
+}

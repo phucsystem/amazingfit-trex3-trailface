@@ -1,0 +1,98 @@
+<!--
+  Screen: S-02 AOD Watch Face
+  CJX Stage: usage
+  FR Mapping: FR-09 (Always-on Display)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S-02 AOD Watch Face — TrailFace</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="components.css">
+</head>
+<body class="cjx-usage">
+  <div class="app-layout">
+    <nav class="sidebar hide-mobile"></nav>
+    <main class="main-content" data-cjx-entrance>
+
+      <div class="screen-toggle">
+        <a href="s01-main-watch-face.html">S-01 Main</a>
+        <a href="s02-aod-watch-face.html" class="active">S-02 AOD</a>
+      </div>
+
+      <div class="watch-wrapper">
+        <div class="watch-strap-top"></div>
+        <div class="watch-strap-bottom"></div>
+        <div class="watch-body">
+          <div class="watch-lug-top"></div>
+          <div class="watch-lug-bottom"></div>
+          <div class="watch-crown"></div>
+
+          <div class="watch-screen">
+            <div class="watch-face">
+              <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <clipPath id="circleClip">
+                    <circle cx="240" cy="240" r="240"/>
+                  </clipPath>
+                  <radialGradient id="bgGradientAod" cx="50%" cy="45%" r="55%">
+                    <stop offset="0%" stop-color="#0a0a18"/>
+                    <stop offset="100%" stop-color="#000000"/>
+                  </radialGradient>
+                  <!-- Subtle glow behind time -->
+                  <radialGradient id="timeGlowAod" cx="50%" cy="44%" r="25%">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.03"/>
+                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+                  </radialGradient>
+                  <filter id="softGlow" x="-10%" y="-10%" width="120%" height="120%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur"/>
+                    <feMerge>
+                      <feMergeNode in="blur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <g clip-path="url(#circleClip)">
+                  <!-- Background -->
+                  <rect width="480" height="480" fill="url(#bgGradientAod)"/>
+                  <rect width="480" height="480" fill="url(#timeGlowAod)"/>
+
+                  <!-- Minimal ring outline for visual continuity -->
+                  <circle cx="240" cy="240" r="228" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.06"/>
+
+                  <!-- Time: 14:30 — white with soft glow -->
+                  <text x="240" y="230" text-anchor="middle"
+                        font-family="'Barlow Condensed', -apple-system, sans-serif"
+                        font-size="96" font-weight="300" fill="#ffffff"
+                        letter-spacing="6" filter="url(#softGlow)">14:30</text>
+
+                  <!-- Steps value: 8,642 — tinted with step color -->
+                  <text x="240" y="285" text-anchor="middle"
+                        font-family="'Barlow Condensed', -apple-system, sans-serif"
+                        font-size="36" font-weight="500" fill="#4a7a5a">8,642</text>
+
+                  <!-- "steps" label -->
+                  <text x="240" y="318" text-anchor="middle"
+                        font-family="'Barlow', -apple-system, sans-serif"
+                        font-size="18" fill="#3a5a4a" letter-spacing="2">STEPS</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="page-info">
+        <h2>S-02: AOD Watch Face</h2>
+        <p>Always-on display &mdash; &lt;10% pixel illumination &mdash; Time + steps only</p>
+      </div>
+
+    </main>
+  </div>
+  <script src="interactions.js"></script>
+</body>
+</html>
